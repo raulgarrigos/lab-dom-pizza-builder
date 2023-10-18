@@ -129,18 +129,50 @@ function renderButtons() {
 
 function renderPrice() {
   // Iteration 4: change the HTML of `<aside class="panel price">`
+  const priceNode = document.querySelector('.panel.price ul');
+  const totalNode = document.querySelector('.panel.price strong');
 
-  let itemPrice = document.querySelector('.price ul');
-  let pepperoniPrice = document.querySelector('.price ul li:first-child');
-  let mushroomsPrice = document.querySelector('.price ul li:second-child');
-  let greenPeppersPrice = document.querySelector('.price ul li:third-child');
-  let whiteSaucePrice = document.querySelector('.price ul li:fourth-child');
-  let crustPrice = document.querySelector('.price ul li:fifth-child');
-  let totalPrice = document.querySelector('price strong');
+  priceNode.innerHTML = '';
+  totalNode.innerHTML = '';
+
+  let totalPrice = 10;
 
   if (state.pepperoni) {
-    pepperoniPrice.add();
+    const liNode = document.createElement('li');
+    liNode.textContent = `$${ingredients.pepperoni.price} ${ingredients.pepperoni.name}`;
+    priceNode.append(liNode);
+    totalPrice += ingredients.pepperoni.price;
   }
+
+  if (state.mushrooms) {
+    const liNode = document.createElement('li');
+    liNode.textContent = `$${ingredients.mushrooms.price} ${ingredients.mushrooms.name}`;
+    priceNode.append(liNode);
+    totalPrice += ingredients.mushrooms.price;
+  }
+
+  if (state.greenPeppers) {
+    const liNode = document.createElement('li');
+    liNode.textContent = `$${ingredients.greenPeppers.price} ${ingredients.greenPeppers.name}`;
+    priceNode.append(liNode);
+    totalPrice += ingredients.greenPeppers.price;
+  }
+
+  if (state.whiteSauce) {
+    const liNode = document.createElement('li');
+    liNode.textContent = `$${ingredients.whiteSauce.price} ${ingredients.whiteSauce.name}`;
+    priceNode.append(liNode);
+    totalPrice += ingredients.whiteSauce.price;
+  }
+
+  if (state.glutenFreeCrust) {
+    const liNode = document.createElement('li');
+    liNode.textContent = `$${ingredients.glutenFreeCrust.price} ${ingredients.glutenFreeCrust.name}`;
+    priceNode.append(liNode);
+    totalPrice += ingredients.glutenFreeCrust.price;
+  }
+
+  totalNode.textContent = `$${totalPrice}`;
 }
 
 renderEverything();
